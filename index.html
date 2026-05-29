@@ -1,1 +1,1178 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ani Katvalyan | Shopify Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose-50: #FFF5F5;
+            --rose-100: #FFE0E6;
+            --rose-200: #FFB8C8;
+            --rose-300: #F48FB1;
+            --rose-400: #E91E63;
+            --rose-500: #C2185B;
+            --rose-600: #A01550;
+            --rose-700: #7C103F;
+            --rose-800: #5C0A2F;
+            --rose-900: #3D061F;
+            --white: #FFFFFF;
+            --text-dark: #2D1B20;
+            --text-medium: #5A3D45;
+            --text-light: #8B6B72;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(194, 24, 91, 0.08);
+            padding: 0.8rem 2rem;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--rose-600);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rose-400);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--rose-500);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--rose-600);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--white) 0%, var(--rose-50) 50%, var(--rose-100) 100%);
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .hero-shape-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--rose-300);
+            top: -200px;
+            right: -150px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--rose-200);
+            bottom: -100px;
+            left: -100px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        .hero-shape-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--rose-400);
+            top: 40%;
+            left: 60%;
+            animation: float 18s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(5deg); }
+            50% { transform: translate(-20px, 20px) rotate(-3deg); }
+            75% { transform: translate(15px, 10px) rotate(3deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--rose-200), var(--rose-300));
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--rose-800);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--rose-400), var(--rose-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-medium);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.6s;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.8s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--rose-500), var(--rose-600));
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 8px 30px rgba(194, 24, 91, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(194, 24, 91, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--rose-600);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--rose-200);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--rose-50);
+            border-color: var(--rose-400);
+            transform: translateY(-3px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .hero-scroll svg {
+            width: 30px;
+            height: 30px;
+            color: var(--rose-400);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--rose-400);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--rose-800);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(194, 24, 91, 0.12);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-image-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 20px;
+            left: 20px;
+            border: 3px solid var(--rose-200);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--rose-700);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--rose-50);
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rose-500);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: linear-gradient(180deg, var(--rose-50) 0%, var(--white) 100%);
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--rose-100);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--rose-300), var(--rose-500));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(194, 24, 91, 0.1);
+            border-color: var(--rose-200);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--rose-100), var(--rose-200));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--rose-600);
+        }
+
+        .skill-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--rose-700);
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Services / Jobs Section */
+        .services {
+            background: var(--white);
+        }
+
+        .services-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            background: var(--rose-50);
+            border-radius: 16px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .service-item:hover {
+            background: var(--white);
+            border-color: var(--rose-200);
+            box-shadow: 0 10px 30px rgba(194, 24, 91, 0.08);
+            transform: translateX(8px);
+        }
+
+        .service-number {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--rose-400), var(--rose-500));
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .service-text {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .service-arrow {
+            margin-left: auto;
+            color: var(--rose-300);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover .service-arrow {
+            color: var(--rose-500);
+            transform: translateX(5px);
+        }
+
+        /* Languages Section */
+        .languages {
+            background: linear-gradient(135deg, var(--rose-600), var(--rose-700), var(--rose-800));
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .languages::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .languages .section-label {
+            color: var(--rose-200);
+        }
+
+        .languages .section-title {
+            color: var(--white);
+        }
+
+        .languages .section-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lang-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .lang-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .lang-flag {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lang-name {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--white);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--rose-50);
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(194, 24, 91, 0.08);
+            border: 1px solid var(--rose-100);
+        }
+
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--rose-700);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--rose-600);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            background: var(--rose-50);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-email:hover {
+            background: var(--rose-100);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--rose-800);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--rose-200);
+            text-decoration: none;
+        }
+
+        footer .footer-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--rose-700);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--rose-500);
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--rose-600);
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image img {
+                height: 350px;
+            }
+
+            .about-image-decoration {
+                display: none;
+            }
+
+            .lang-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .service-item {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .service-text {
+                font-size: 0.95rem;
+            }
+
+            .contact-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-grid {
+                gap: 1rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">AK</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#languages">Languages</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
+        <a href="#about" onclick="closeMobile()">About</a>
+        <a href="#skills" onclick="closeMobile()">Skills</a>
+        <a href="#services" onclick="closeMobile()">Services</a>
+        <a href="#languages" onclick="closeMobile()">Languages</a>
+        <a href="#contact" onclick="closeMobile()">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-shapes">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+            <div class="hero-shape hero-shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge">Shopify Specialist</span>
+            <h1 class="hero-title">
+                Full Store Setup,<br>Management &<br><span>Multilingual Support</span>
+            </h1>
+            <p class="hero-subtitle">
+                Some clients need a store built. Others need it managed. Most need both — and I can handle the full picture from day one.
+            </p>
+            <div class="hero-cta-group">
+                <a href="#contact" class="btn-primary">
+                    Let's Talk
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="#services" class="btn-secondary">
+                    View Services
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header reveal">
+            <span class="section-label">About Me</span>
+            <h2 class="section-title">From Zero to Fully Running</h2>
+            <p class="section-desc">End-to-end Shopify expertise with operational discipline</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-image-wrapper reveal">
+                <div class="about-image">
+                    <img src="" alt="Ani Katvalyan - Shopify Specialist" id="aboutImg">
+                </div>
+                <div class="about-image-decoration"></div>
+            </div>
+            <div class="about-text reveal">
+                <h3>I build stores that sell and manage them so they keep selling.</h3>
+                <p>
+                    I set up Shopify stores from scratch: theme configuration, product listing, collection structure, page building, and store customization. Once the store is live, I take care of ongoing management, quality control, customer support, and content updates — so the owner can focus on growing the business instead of running it.
+                </p>
+                <p>
+                    My background in quality monitoring, multilingual customer care, and IT project management means I bring real operational discipline to every store I work on. I've supported French and English-speaking clients professionally, which makes me especially valuable for stores targeting European or international markets.
+                </p>
+                <p>
+                    I approach every project with the same attention to detail I built across years of professional experience.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Languages</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Dedication</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">Full</span>
+                        <span class="stat-label">Service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="section-header reveal">
+            <span class="section-label">Expertise</span>
+            <h2 class="section-title">Skills & Capabilities</h2>
+            <p class="section-desc">A comprehensive toolkit for every stage of your Shopify journey</p>
+        </div>
+        <div class="skills-container">
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h4>Shopify Store Setup & Build</h4>
+                    <p>Complete store creation from scratch — theme selection, configuration, and launch-ready deployment.</p>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                    </div>
+                    <h4>Theme Customization & Pages</h4>
+                    <p>Tailored theme modifications and professional page configuration that match your brand identity.</p>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+                    </div>
+                    <h4>Product & Catalog Management</h4>
+                    <p>Product listing, collections setup, and ongoing catalog organization for optimal customer experience.</p>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    </div>
+                    <h4>Store Management & Operations</h4>
+                    <p>Ongoing daily operations, content updates, quality control, and maintenance to keep your store running smoothly.</p>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg>
+                    </div>
+                    <h4>Multilingual Customer Support</h4>
+                    <p>Professional support in French, English, Russian, and Armenian for international and European markets.</p>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path></svg>
+                    </div>
+                    <h4>Quality Monitoring & Tools</h4>
+                    <p>Process control, Jira & Agile project management, MS Office, Google Docs, and CRM tools proficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header reveal">
+            <span class="section-label">What I Offer</span>
+            <h2 class="section-title">Services & Roles</h2>
+            <p class="section-desc">Comprehensive Shopify solutions tailored to your business needs</p>
+        </div>
+        <div class="services-container">
+            <div class="services-list">
+                <div class="service-item reveal">
+                    <div class="service-number">01</div>
+                    <span class="service-text">Shopify Store Setup & Full Management</span>
+                    <span class="service-arrow">→</span>
+                </div>
+                <div class="service-item reveal">
+                    <div class="service-number">02</div>
+                    <span class="service-text">Shopify Expert for Store Build & Launch</span>
+                    <span class="service-arrow">→</span>
+                </div>
+                <div class="service-item reveal">
+                    <div class="service-number">03</div>
+                    <span class="service-text">Multilingual Shopify Store Manager</span>
+                    <span class="service-arrow">→</span>
+                </div>
+                <div class="service-item reveal">
+                    <div class="service-number">04</div>
+                    <span class="service-text">eCommerce Project Manager (Shopify)</span>
+                    <span class="service-arrow">→</span>
+                </div>
+                <div class="service-item reveal">
+                    <div class="service-number">05</div>
+                    <span class="service-text">Shopify Virtual Assistant (Full Service)</span>
+                    <span class="service-arrow">→</span>
+                </div>
+                <div class="service-item reveal">
+                    <div class="service-number">06</div>
+                    <span class="service-text">Shopify Store Manager with Customer Support</span>
+                    <span class="service-arrow">→</span>
+                </div>
+                <div class="service-item reveal">
+                    <div class="service-number">07</div>
+                    <span class="service-text">End-to-End Shopify Store Specialist</span>
+                    <span class="service-arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section class="languages" id="languages">
+        <div class="section-header reveal">
+            <span class="section-label">Communication</span>
+            <h2 class="section-title">Languages I Work In</h2>
+            <p class="section-desc">Serving clients across multiple markets and regions</p>
+        </div>
+        <div class="lang-grid">
+            <div class="lang-item reveal">
+                <div class="lang-flag">🇦🇲</div>
+                <div class="lang-name">Armenian</div>
+            </div>
+            <div class="lang-item reveal">
+                <div class="lang-flag">🇫🇷</div>
+                <div class="lang-name">French</div>
+            </div>
+            <div class="lang-item reveal">
+                <div class="lang-flag">🇬🇧</div>
+                <div class="lang-name">English</div>
+            </div>
+            <div class="lang-item reveal">
+                <div class="lang-flag">🇷🇺</div>
+                <div class="lang-name">Russian</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="section-header reveal">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Let's Build Your Store</h2>
+            </div>
+            <div class="contact-card reveal">
+                <h3>If you need one person who can take your Shopify store from zero to fully running — let's talk.</h3>
+                <p>I bring operational discipline, multilingual capabilities, and end-to-end Shopify expertise to every project. Whether you need a brand-new store built or an existing one managed, I'm here to help.</p>
+                <a href="mailto:ani.katvalyan@email.com" class="contact-email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-name">Ani Katvalyan</div>
+        <p>Shopify Specialist | Full Store Setup, Management & Multilingual Support</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">© 2026 Ani Katvalyan. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const navToggle = document.getElementById('navToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileClose = document.getElementById('mobileClose');
+
+        navToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileClose.addEventListener('click', closeMobile);
+
+        function closeMobile() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
